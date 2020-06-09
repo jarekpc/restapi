@@ -13,7 +13,6 @@ public class PostDtoMapper {
     private PostDtoMapper(){}
 
     public static List<PostDto> mapToDto(List<Post> posts) {
-        //zamiana post na dto
         return posts.stream().map(post -> mapToPostDto(post)).collect(Collectors.toList());
     }
 
@@ -22,5 +21,13 @@ public class PostDtoMapper {
                 .id(post.getId())
                 .title(post.getTitle())
                 .created(post.getCreated()).build();
+    }
+
+
+    public static Post mapDtoToPost(PostDto postDto){
+        Post p = new Post();
+        p.setTitle(postDto.getTitle());
+        p.setContent(postDto.getContent());
+        return p;
     }
 }
